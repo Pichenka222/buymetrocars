@@ -1,22 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Multi-Timezone Digital Clock</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Digital Clock — Time Zones</title>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-    <div>
-        <h1>Multi-Timezone Digital Clock</h1>
-        <button id="reset-button">Reset to default time zones</button>
-        <select id="timezone-select">
-            <!-- Timezone options will be populated here -->
+  <main class="app">
+    <header class="header">
+      <h1>Цифровий годинник (таймзони)</h1>
+      <p class="sub">Показує поточний час у вибраних часових поясах (оновлення щосекунди).</p>
+    </header>
+
+    <section class="panel">
+      <div class="row">
+        <label class="label" for="format">Формат</label>
+        <select id="format" class="control">
+          <option value="24" selected>24-годинний</option>
+          <option value="12">12-годинний</option>
         </select>
-        <div id="clocks">
-            <!-- Clocks will be displayed here -->
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+        <label class="label" for="locale">Локаль</label>
+        <select id="locale" class="control">
+          <option value="uk-UA" selected>uk-UA</option>
+          <option value="en-US">en-US</option>
+          <option value="en-GB">en-GB</option>
+        </select>
+
+        <button id="resetBtn" class="btn btn-secondary" type="button">
+          Reset to default
+        </button>
+      </div>
+
+      <div class="row">
+        <label class="label" for="addTz">Додати таймзону (IANA)</label>
+        <input id="addTz" class="control" placeholder="Напр. Europe/Paris або America/Chicago" />
+        <button id="addBtn" class="btn" type="button">Додати</button>
+      </div>
+
+      <p class="hint">
+        Порада: <code>Europe/Kyiv</code>, <code>Europe/London</code>,
+        <code>America/New_York</code>, <code>Asia/Tokyo</code> тощо.
+      </p>
+    </section>
+
+    <section class="grid" id="clocks" aria-live="polite"></section>
+
+    <footer class="footer">
+      <small>Intl.DateTimeFormat + IANA time zones. Без бібліотек.</small>
+    </footer>
+  </main>
+
+  <script src="./script.js"></script>
 </body>
 </html>
